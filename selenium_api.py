@@ -451,17 +451,29 @@ def select_invert_check_box(check_boxs_xpath_exp): # 反选复选框
 
 
 # ==================================== 分隔线 =============================================
-def switch_frame(frame_obj): # 页面中切换frame
+def switch_frame(frame_obj): # 原始页面中切换至frame（切入frame）
     global driver
     try:
         driver.switch_to.frame(frame_obj)
     except Exception as e:
         traceback.print_exc()
-        print("切换frame失败")
+        print("切入frame失败")
         raise e
+
+def switch_default(): # 从frame中切回原始页面（切出frame）
+    global driver
+    try:
+        driver.switch_to.default_content()
+    except Exception as e:
+        traceback.print_exc()
+        print("切出frame失败")
+        raise e
+
 
 # ==================================== 分隔线 =============================================
 
+def sleep(times=3):
+    time.sleep(times)
 
 # ==================================== 【断言、截屏】 =============================================
 
